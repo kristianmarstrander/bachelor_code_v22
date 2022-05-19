@@ -1,0 +1,19 @@
+- name: joinad
+  hosts: unconfiguredLinuxHosts
+  vars_files:
+   - "./linux_vars.yml"
+  tasks:
+   - name: Copy file with owner and permissions
+     become: yes
+     copy:
+       src: ~/.ssh/id_rsa
+       dest: /home/ubuntu/.ssh/id_rsa
+       owner: ubuntu
+       group: ubuntu
+       mode: '0600'
+   - name: join active directory
+     become: yes
+     script: ../adjoin.sh {{ machinename }}
+   - name: install and set up zabbix
+     become: yes
+     script: ../zabbix_setup_linux.sh

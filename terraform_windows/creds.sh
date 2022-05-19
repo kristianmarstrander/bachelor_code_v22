@@ -1,0 +1,7 @@
+export OS_AUTH_TYPE=v3applicationcredential
+export OS_AUTH_URL=https://api.skyhigh.iik.ntnu.no:5000/v3/
+export OS_IDENTITY_API_VERSION=3
+export OS_REGION_NAME=SkyHiGh
+export OS_INTERFACE=public
+export OS_APPLICATION_CREDENTIAL_ID=39a744cd20124d65a357ac98f1061d07
+export OS_APPLICATION_CREDENTIAL_SECRET=tD1td0g83TikXh1Cv1mqPfFJPnOAqKQKjXc6NEA-SZC0prVEohXIF-pJfmthdx_FHXXzStNyhEMOQOA6g20Q9Q

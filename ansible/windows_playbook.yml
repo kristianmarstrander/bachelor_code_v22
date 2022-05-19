@@ -1,0 +1,25 @@
+- name: joinad
+  hosts: unconfiguredWindowsHosts
+  vars_files:
+   - "./windows_vars.yml"
+  tasks:
+   - name: Make sure destination dir exists
+     win_file:
+        path: C:\temp\
+        state: directory
+   - name: copy adjoin.ps1
+     win_copy:
+        src: ../adjoin.ps1
+        dest: C:\temp\adjoin.ps1
+   - name: copy zabbix_windows_setup.ps1
+     win_copy:
+        src: ../zabbix_windows_setup.ps1
+        dest: C:\temp\zabbix_windows_setup.ps1
+   - name: set executionpolicy
+     win_command: powershell.exe -command {set-executionpolicy -executionpolicy bypass}
+   - name: join ad
+     win_command: powershell.exe C:\temp\adjoin.ps1 {{ machinename }}
+   - name: install and setup zabbix
+     win_command: powershell.exe C:\temp\zabbix_windows_setup.ps1
+   - name: restart computer
+     win_command: powershell.exe restart-computer
